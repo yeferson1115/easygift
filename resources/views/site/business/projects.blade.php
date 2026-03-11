@@ -2,23 +2,29 @@
 @section('title', 'Pedidos')
 @section('content')
 
-<section class="row">
-    <div class="col-md-12" style="padding: 0px 30px;">
-        <a href="javascript:history.back()" class="previos-profile">
-            <i class="bi bi-arrow-left-circle"></i> Volver
-        </a>
-
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
-            <div>
-                <h2 class="pedidos-title mb-2">Pedidos</h2>
-                <div class="d-flex flex-wrap gap-2">
-                    <span class="badge rounded-pill text-bg-light pedidos-badge">Total pedidos: {{ $projects->count() }}</span>
-                    <span class="badge rounded-pill pedidos-badge pedidos-badge-warning">En curso: {{ $projects->where('state', 0)->count() }}</span>
+<section class="row pedidos-page">
+    <div class="col-md-12 pedidos-container">
+        <div class="pedidos-header">
+            <div class="pedidos-header-left">
+                <h2 class="pedidos-title">Pedidos</h2>
+                <div class="pedidos-resumen">
+                    <span class="badge rounded-pill pedidos-badge pedidos-badge-total">
+                        Total pedidos: {{ $projects->count() }}
+                    </span>
+                    <span class="badge rounded-pill pedidos-badge pedidos-badge-warning">
+                        <span class="pedidos-badge-dot"></span>
+                        En curso: {{ $projects->where('state', 0)->count() }}
+                    </span>
                 </div>
             </div>
+
+            <a class="btn pedidos-export-btn" href="{{ route('projects.export') }}">
+                <i class="bi bi-download"></i>
+                Descargar CSV
+            </a>
         </div>
 
-        <div class="card pedidos-table-card">
+        <div class="pedidos-table-card">
             <div class="table-responsive">
                 <table class="table align-middle mb-0 pedidos-table">
                     <thead>
@@ -54,9 +60,9 @@
                                         <span class="pedido-image pedido-placeholder"></span>
                                     @endif
                                 </td>
-                                <td>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('M d/y') }}</td>
+                                <td>{{ \\Carbon\\Carbon::parse($item->created_at)->translatedFormat('M d/y') }}</td>
                                 <td>{{ $item->no_project }}</td>
-                                <td>{{$firstProduct->producto}}</td>
+                                <td>{{ $firstProduct->producto ?? 'Sin nombre' }}</td>
                                 <td>${{ number_format($item->total, 0, 0, '.') }}</td>
                                 <td>{{ $qty }}</td>
                                 <td>
@@ -70,7 +76,7 @@
                                 </td>
                                 <td>
                                     <a
-                                        class="btn btn-primary btn-sm px-3 rounded-pill"
+                                        class="btn pedidos-action-btn"
                                         href="{{ route('pedidosempresa.show', $item->encode_id) }}"
                                         title="Ver detalles"
                                     >
@@ -80,7 +86,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="8" class="text-center py-4 text-muted">Aún no tienes pedidos registrados.</td>
+                                <td colspan="8" class="text-center py-5 text-muted">Aún no tienes pedidos registrados.</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -93,78 +99,181 @@
 
 @push('styles')
     <style>
-        .pedidos-wrapper {
-            padding-bottom: 2rem;
+        .pedidos-page {
+            background: #eff1f5;
+            min-height: calc(100vh - 90px);
+            padding: 2.25rem 0 2.5rem;
+        }
+
+        .pedidos-container {
+            padding: 0 54px;
+        }
+
+        .pedidos-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.35rem;
+            flex-wrap: wrap;
+        }
+
+        .pedidos-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .pedidos-title {
-            color: #271f7e;
-            font-size: 2rem;
-            font-weight: 700;
+            color: #241f7a;
+            font-size: 2.2rem;
+            line-height: 1;
+            margin: 0;
+            font-weight: 800;
+        }
+
+        .pedidos-resumen {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 2px;
         }
 
         .pedidos-badge {
-            color: #586b8e;
-            font-size: 0.95rem;
-            border: 1px solid #d8ddea;
-            padding: 0.5rem 0.9rem;
+            font-size: 0.9rem;
+            border: 1px solid;
+            padding: 0.38rem 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-weight: 700;
+        }
+
+        .pedidos-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: currentColor;
+            display: inline-block;
+        }
+
+        .pedidos-badge-total {
+            color: #4348d9;
+            background: #ecefff;
+            border-color: #d9ddff;
         }
 
         .pedidos-badge-warning {
-            color: #b67200;
-            background-color: #fff7e7;
-            border-color: #f9e3b6;
+            color: #d07a00;
+            background: #fff7e8;
+            border-color: #f0e1bc;
+        }
+
+        .pedidos-export-btn {
+            border-radius: 11px;
+            background: #030303;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.02rem;
+            padding: 0.56rem 1.3rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .pedidos-export-btn:hover {
+            color: #fff;
+            opacity: 0.92;
         }
 
         .pedidos-table-card {
-            border-radius: 1.25rem;
-            border: 1px solid #e5e7eb;
+            background: #fff;
+            border: 1px solid #e3e4e8;
+            border-radius: 1.8rem;
             overflow: hidden;
+        }
+
+        .pedidos-table {
+            margin-bottom: 0;
         }
 
         .pedidos-table thead th {
             font-weight: 700;
-            color: #64748b;
-            border-bottom: 1px dashed #d8ddea;
-            background-color: #fff;
+            color: #637793;
+            border-bottom: 2px dashed #e7e7ec;
+            background: #fff;
             white-space: nowrap;
+            padding: 1.15rem 1rem;
+            font-size: 1.03rem;
         }
 
         .pedidos-table tbody td {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            color: #4b5563;
+            padding: 0.95rem 1rem;
+            color: #5b5d64;
             font-weight: 600;
+            border-top: 1px solid #ececf1;
+            vertical-align: middle;
+            font-size: 1.02rem;
         }
 
         .pedido-image {
             width: 52px;
             height: 52px;
-            border-radius: 0.75rem;
+            border-radius: 11px;
             object-fit: cover;
             display: inline-block;
-            background-color: #e5e7eb;
+            background: #ececef;
         }
 
         .pedido-placeholder {
-            background-color: #e5e7eb;
+            background: #dbdde0;
         }
 
         .estado {
-            font-weight: 700;
+            font-weight: 800;
             text-decoration: underline;
         }
 
         .estado-proceso {
-            color: #d28600;
+            color: #e28b00;
         }
 
         .estado-enviado {
-            color: #15803d;
+            color: #11813d;
         }
 
         .estado-entregado {
-            color: #1d4ed8;
+            color: #2b62b4;
+        }
+
+        .pedidos-action-btn {
+            border-radius: 10px;
+            background: #6366f1;
+            color: #fff;
+            font-weight: 700;
+            padding: 0.43rem 1.05rem;
+            line-height: 1;
+            border: 0;
+        }
+
+        .pedidos-action-btn:hover {
+            color: #fff;
+            opacity: 0.92;
+        }
+
+        @media (max-width: 991.98px) {
+            .pedidos-container {
+                padding: 0 20px;
+            }
+
+            .pedidos-header-left {
+                gap: 0.8rem;
+            }
+
+            .pedidos-title {
+                font-size: 1.9rem;
+            }
         }
     </style>
 @endpush
