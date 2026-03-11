@@ -4,29 +4,16 @@
 
 <section class="row pedidos-page">
     <div class="col-md-12 pedidos-container">
-        <a href="javascript:history.back()" class="previos-profile">
-            <i class="bi bi-arrow-left-circle"></i> Volver
-        </a>
-
         <div class="pedidos-header">
-            <div>
-                <h2 class="pedidos-title mb-2">Pedidos</h2>
+            <div class="pedidos-header-left">
+                <h2 class="pedidos-title">Pedidos</h2>
                 <div class="pedidos-resumen">
                     <span class="badge rounded-pill pedidos-badge pedidos-badge-total">
-                        <span class="pedidos-badge-dot"></span>
                         Total pedidos: {{ $projects->count() }}
                     </span>
                     <span class="badge rounded-pill pedidos-badge pedidos-badge-warning">
                         <span class="pedidos-badge-dot"></span>
-                        En preparación: {{ $projects->where('state', 0)->count() }}
-                    </span>
-                    <span class="badge rounded-pill pedidos-badge pedidos-badge-success">
-                        <span class="pedidos-badge-dot"></span>
-                        Enviados: {{ $projects->where('state', 1)->count() }}
-                    </span>
-                    <span class="badge rounded-pill pedidos-badge pedidos-badge-info">
-                        <span class="pedidos-badge-dot"></span>
-                        Entregados: {{ $projects->where('state', 2)->count() }}
+                        En curso: {{ $projects->where('state', 0)->count() }}
                     </span>
                 </div>
             </div>
@@ -113,12 +100,13 @@
 @push('styles')
     <style>
         .pedidos-page {
-            background: #f3f4f6;
-            padding-bottom: 2.5rem;
+            background: #eff1f5;
+            min-height: calc(100vh - 90px);
+            padding: 2.25rem 0 2.5rem;
         }
 
         .pedidos-container {
-            padding: 0 30px;
+            padding: 0 54px;
         }
 
         .pedidos-header {
@@ -126,35 +114,39 @@
             align-items: center;
             justify-content: space-between;
             gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.35rem;
+            flex-wrap: wrap;
+        }
+
+        .pedidos-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
         .pedidos-title {
-            color: #271f7e;
-            font-size: 2rem;
+            color: #241f7a;
+            font-size: 2.2rem;
+            line-height: 1;
+            margin: 0;
             font-weight: 800;
         }
 
         .pedidos-resumen {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.65rem;
-        }
-
-        .pedidos-resumen {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.65rem;
+            gap: 0.75rem;
+            margin-top: 2px;
         }
 
         .pedidos-badge {
-            font-size: 0.96rem;
+            font-size: 0.9rem;
             border: 1px solid;
-            padding: 0.5rem 0.95rem;
+            padding: 0.38rem 0.9rem;
             display: inline-flex;
             align-items: center;
-            gap: 0.55rem;
+            gap: 0.45rem;
             font-weight: 700;
         }
 
@@ -164,53 +156,41 @@
             border-radius: 50%;
             background-color: currentColor;
             display: inline-block;
-            opacity: 0.9;
         }
 
         .pedidos-badge-total {
-            color: #3f46d3;
-            background-color: #eef0ff;
+            color: #4348d9;
+            background: #ecefff;
             border-color: #d9ddff;
         }
 
         .pedidos-badge-warning {
-            color: #c97800;
-            background-color: #fff6e6;
-            border-color: #f6deb0;
-        }
-
-        .pedidos-badge-success {
-            color: #11833f;
-            background-color: #e9f9ef;
-            border-color: #c8edda;
-        }
-
-        .pedidos-badge-info {
-            color: #2b63b8;
-            background-color: #ebf3ff;
-            border-color: #cfe1ff;
+            color: #d07a00;
+            background: #fff7e8;
+            border-color: #f0e1bc;
         }
 
         .pedidos-export-btn {
-            border-radius: 12px;
-            background-color: #060606;
+            border-radius: 11px;
+            background: #030303;
             color: #fff;
             font-weight: 700;
-            padding: 0.55rem 1.15rem;
+            font-size: 1.02rem;
+            padding: 0.56rem 1.3rem;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.45rem;
         }
 
         .pedidos-export-btn:hover {
             color: #fff;
-            opacity: 0.93;
+            opacity: 0.92;
         }
 
         .pedidos-table-card {
             background: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 1.6rem;
+            border: 1px solid #e3e4e8;
+            border-radius: 1.8rem;
             overflow: hidden;
             box-shadow: 0 2px 12px rgba(16, 24, 40, 0.04);
         }
@@ -219,35 +199,40 @@
             margin-bottom: 0;
         }
 
+        .pedidos-table {
+            margin-bottom: 0;
+        }
+
         .pedidos-table thead th {
             font-weight: 700;
-            color: #5e7090;
-            border-bottom: 2px dashed #e4e7ec;
-            background-color: #fff;
+            color: #637793;
+            border-bottom: 2px dashed #e7e7ec;
+            background: #fff;
             white-space: nowrap;
-            padding: 1.3rem 1rem;
-            font-size: 1.05rem;
+            padding: 1.15rem 1rem;
+            font-size: 1.03rem;
         }
 
         .pedidos-table tbody td {
-            padding: 1.05rem 1rem;
-            color: #505a6d;
+            padding: 0.95rem 1rem;
+            color: #5b5d64;
             font-weight: 600;
-            border-top: 1px solid #eef1f5;
+            border-top: 1px solid #ececf1;
             vertical-align: middle;
+            font-size: 1.02rem;
         }
 
         .pedido-image {
             width: 52px;
             height: 52px;
-            border-radius: 0.75rem;
+            border-radius: 11px;
             object-fit: cover;
             display: inline-block;
-            background-color: #e5e7eb;
+            background: #ececef;
         }
 
         .pedido-placeholder {
-            background-color: #d1d5db;
+            background: #dbdde0;
         }
 
         .estado {
@@ -256,15 +241,44 @@
         }
 
         .estado-proceso {
-            color: #d28600;
+            color: #e28b00;
         }
 
         .estado-enviado {
-            color: #15803d;
+            color: #11813d;
         }
 
         .estado-entregado {
-            color: #1d4ed8;
+            color: #2b62b4;
+        }
+
+        .pedidos-action-btn {
+            border-radius: 10px;
+            background: #6366f1;
+            color: #fff;
+            font-weight: 700;
+            padding: 0.43rem 1.05rem;
+            line-height: 1;
+            border: 0;
+        }
+
+        .pedidos-action-btn:hover {
+            color: #fff;
+            opacity: 0.92;
+        }
+
+        @media (max-width: 991.98px) {
+            .pedidos-container {
+                padding: 0 20px;
+            }
+
+            .pedidos-header-left {
+                gap: 0.8rem;
+            }
+
+            .pedidos-title {
+                font-size: 1.9rem;
+            }
         }
 
         .pedidos-action-btn {
