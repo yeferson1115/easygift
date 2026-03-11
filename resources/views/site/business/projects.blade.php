@@ -1,10 +1,9 @@
 @extends('layouts.appuser')
 @section('title', 'Pedidos')
 
-@section('content')
-<section class="row pedidos-wrapper">
-    <div class="col-md-12 px-4 px-md-5">
-        <a href="javascript:history.back()" class="previos-profile d-inline-block mb-3">
+<section class="row">
+    <div class="col-md-12" style="padding: 0px 30px;">
+        <a href="javascript:history.back()" class="previos-profile">
             <i class="bi bi-arrow-left-circle"></i> Volver
         </a>
 
