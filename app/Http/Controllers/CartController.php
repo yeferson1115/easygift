@@ -461,7 +461,7 @@ class CartController extends Controller
        });*/
 
        $wompi=0;
-       if($request->payment_method=='PSE, Tarjeta débito o crédito'){
+       if($request->payment_method=='PSE, Tarjeta débito o crédito' && !$request->file('vaucher')){
             $wompi = array(
                 'reference'=>'knb_'.$project->no_project,
                 'total'=>$fulltotal,
