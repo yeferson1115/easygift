@@ -192,6 +192,11 @@
             border: 1px solid #e3e4e8;
             border-radius: 1.8rem;
             overflow: hidden;
+            box-shadow: 0 2px 12px rgba(16, 24, 40, 0.04);
+        }
+
+        .pedidos-table {
+            margin-bottom: 0;
         }
 
         .pedidos-table {
@@ -274,6 +279,20 @@
             .pedidos-title {
                 font-size: 1.9rem;
             }
+        }
+
+        .pedidos-action-btn {
+            border-radius: 10px;
+            background: #6366f1;
+            color: #fff;
+            font-weight: 700;
+            padding: 0.45rem 1rem;
+            line-height: 1;
+        }
+
+        .pedidos-action-btn:hover {
+            color: #fff;
+            opacity: 0.92;
         }
     </style>
 @endpush
