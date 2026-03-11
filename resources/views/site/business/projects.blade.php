@@ -142,6 +142,12 @@
             gap: 0.65rem;
         }
 
+        .pedidos-resumen {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+        }
+
         .pedidos-badge {
             font-size: 0.96rem;
             border: 1px solid;
