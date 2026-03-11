@@ -50,8 +50,8 @@
 
                 <hr class="order-divider">
 
-                <h2 class="order-block-title" style="margin-bottom: 12px;">Información de envío:</h2>
-                <p class="mb-0" style="color:#5d5d5d; font-size:24px; line-height:1.4;">
+                <h2 class="order-block-title order-shipping-title">Información de envío:</h2>
+                <p class="mb-0 order-shipping-text">
                     {{ $project->delivery_name ?? $project->customer }}<br>
                     {{ $project->delivery_address ?? 'Dirección no registrada' }}<br>
                     {{ $project->delivery_city ?? '' }}

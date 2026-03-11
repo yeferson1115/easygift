@@ -7246,3 +7246,241 @@ ul.ul-info li:before {
 
 
 
+
+/* Order detail business view */
+.order-detail-wrapper {
+    max-width: 1100px;
+    margin: 34px auto 0;
+    padding: 0 10px 32px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.order-header-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.order-back {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #d9e4ee;
+    color: #708297;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.order-title {
+    margin: 0;
+    color: #231b72;
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.order-code {
+    color: #5f6f86;
+}
+
+.order-help {
+    border: 2px solid #1cb854;
+    border-radius: 14px;
+    color: #14a147;
+    background: #f2fff6;
+    padding: 9px 18px;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.order-main-card {
+    background: #ffffff;
+    border-radius: 34px;
+    border: 1px solid #eceef2;
+    box-shadow: 0 10px 28px rgba(24, 33, 77, 0.06);
+    margin: 0;
+    padding: 44px 54px;
+}
+
+.order-block-title {
+    color: #3a3a3a;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    color: #616161;
+    font-size: 37px;
+    margin-bottom: 12px;
+}
+
+.detail-row .value {
+    color: #4d4d4d;
+    font-weight: 600;
+    text-align: right;
+}
+
+.detail-row .status {
+    color: #f3a71f;
+    text-decoration: underline;
+}
+
+.order-divider {
+    margin: 22px 0;
+    border-top: 1px solid #ececec;
+    opacity: 1;
+}
+
+.product-line {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.product-line img {
+    width: 76px;
+    height: 76px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.product-name {
+    color: #4f4f4f;
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.product-meta {
+    color: #666;
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
+.product-price {
+    font-weight: 700;
+}
+
+.timeline-card .timeline {
+    margin-left: 16px;
+}
+
+.timeline-card .timeline-item {
+    border-left: 3px solid #1fd161;
+    padding-left: 44px;
+}
+
+.timeline-card .timeline-item:not(:last-child) {
+    padding-bottom: 26px;
+}
+
+.timeline-card .timeline-item .timeline-point.timeline-point-indicator.timeline-kanbai-active {
+    left: -25px !important;
+    width: 46px !important;
+    height: 46px !important;
+    font-size: 22px;
+    background: #1fd161 !important;
+}
+
+.timeline-card .timeline-event h6 {
+    color: #4f4f4f;
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.timeline-card .timeline-event p {
+    color: #8a8a8a;
+    font-size: 27px;
+    margin-bottom: 0;
+}
+
+.evidence-box {
+    border: 1px solid #d7dce2;
+    border-radius: 24px;
+    background: #f5f7f9;
+    padding: 24px 28px;
+    margin-top: 18px;
+}
+
+.order-shipping-title {
+    margin-bottom: 12px;
+}
+
+.order-shipping-text {
+    color: #5d5d5d;
+    font-size: 30px;
+    line-height: 1.42;
+}
+
+@media (max-width: 991.98px) {
+    .order-detail-wrapper {
+        margin-top: 18px;
+    }
+
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .order-main-card {
+        padding: 26px 20px;
+        border-radius: 24px;
+    }
+
+    .order-title {
+        font-size: 28px;
+    }
+
+    .order-block-title {
+        font-size: 26px;
+        margin-bottom: 18px;
+    }
+
+    .order-help {
+        font-size: 17px;
+    }
+
+    .detail-row {
+        font-size: 18px;
+    }
+
+    .product-name {
+        font-size: 22px;
+    }
+
+    .product-meta {
+        font-size: 16px;
+    }
+
+    .order-shipping-text {
+        font-size: 18px;
+    }
+
+    .timeline-card .timeline-event h6 {
+        font-size: 22px;
+    }
+
+    .timeline-card .timeline-event p {
+        font-size: 14px;
+    }
+}
