@@ -299,7 +299,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button class="btn waves-effect waves-float waves-light ajax btn-go-quotation btn-lg" id="comprar">Comprar</button>
+                                                    <button class="btn mb-4 addcart btn-lg btn-sale btn-go-quotation  btn-lg" id="comprar">Comprar</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -320,7 +320,7 @@
                             <div class="col-md-5 resume-mobile mb-5 mt-5" >
                                 @include('site.cart.partials.resumemobile')
                                 <div class="mt-4">
-                                <button class="btn waves-effect waves-float waves-light ajax btn-go-quotation btn-lg comprar checkout-buy-direct" id="comprar">Comprar</button>
+                                <button class="btn mb-4 addcart btn-lg btn-sale btn-go-quotation comprar checkout-buy-direct" id="comprar">Comprar</button>
                                 </div>
                             </div>
                             

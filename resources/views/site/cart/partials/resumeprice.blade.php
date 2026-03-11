@@ -39,4 +39,4 @@
                                 @endif
 
                                     <hr class="separated-dotted">
-                                    <p class="resume-check" >Valor Total: <span>${{number_format(Cart::session('secondary')->getTotal()+$totalextras+$totalenvio, 0, 0, '.')}}</span></p>
+                                    <p class="resume-check" >Valor Total: <span style="color:#231B72;">${{number_format(Cart::session('secondary')->getTotal()+$totalextras+$totalenvio, 0, 0, '.')}}</span></p>
