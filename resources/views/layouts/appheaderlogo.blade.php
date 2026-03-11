@@ -26,6 +26,7 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('app-assets/css/style.css').'?'.rand() }}" rel="stylesheet">
     @livewireStyles
+    @stack('styles')
 </head>
 
 <body class="check-out">

@@ -60,7 +60,7 @@
                                         <span class="pedido-image pedido-placeholder"></span>
                                     @endif
                                 </td>
-                                <td>{{ \\Carbon\\Carbon::parse($item->created_at)->translatedFormat('M d/y') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('M d/y') }}</td>
                                 <td>{{ $item->no_project }}</td>
                                 <td>{{ $firstProduct->producto ?? 'Sin nombre' }}</td>
                                 <td>${{ number_format($item->total, 0, 0, '.') }}</td>
