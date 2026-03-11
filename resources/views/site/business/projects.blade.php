@@ -11,9 +11,23 @@
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
             <div>
                 <h2 class="pedidos-title mb-2">Pedidos</h2>
-                <div class="d-flex flex-wrap gap-2">
-                    <span class="badge rounded-pill text-bg-light pedidos-badge">Total pedidos: {{ $projects->count() }}</span>
-                    <span class="badge rounded-pill pedidos-badge pedidos-badge-warning">En curso: {{ $projects->where('state', 0)->count() }}</span>
+                <div class="pedidos-resumen">
+                    <span class="badge rounded-pill pedidos-badge pedidos-badge-total">
+                        <span class="pedidos-badge-dot"></span>
+                        Total pedidos: {{ $projects->count() }}
+                    </span>
+                    <span class="badge rounded-pill pedidos-badge pedidos-badge-warning">
+                        <span class="pedidos-badge-dot"></span>
+                        En preparación: {{ $projects->where('state', 0)->count() }}
+                    </span>
+                    <span class="badge rounded-pill pedidos-badge pedidos-badge-success">
+                        <span class="pedidos-badge-dot"></span>
+                        Enviados: {{ $projects->where('state', 1)->count() }}
+                    </span>
+                    <span class="badge rounded-pill pedidos-badge pedidos-badge-info">
+                        <span class="pedidos-badge-dot"></span>
+                        Entregados: {{ $projects->where('state', 2)->count() }}
+                    </span>
                 </div>
             </div>
         </div>
@@ -103,17 +117,54 @@
             font-weight: 700;
         }
 
+        .pedidos-resumen {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+        }
+
         .pedidos-badge {
-            color: #586b8e;
             font-size: 0.95rem;
-            border: 1px solid #d8ddea;
-            padding: 0.5rem 0.9rem;
+            border-width: 1px;
+            border-style: solid;
+            padding: 0.45rem 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-weight: 700;
+        }
+
+        .pedidos-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: currentColor;
+            display: inline-block;
+            opacity: 0.85;
+        }
+
+        .pedidos-badge-total {
+            color: #3f46d3;
+            background-color: #eef0ff;
+            border-color: #d9ddff;
         }
 
         .pedidos-badge-warning {
-            color: #b67200;
-            background-color: #fff7e7;
-            border-color: #f9e3b6;
+            color: #c97800;
+            background-color: #fff6e6;
+            border-color: #f6deb0;
+        }
+
+        .pedidos-badge-success {
+            color: #11833f;
+            background-color: #e9f9ef;
+            border-color: #c8edda;
+        }
+
+        .pedidos-badge-info {
+            color: #2b63b8;
+            background-color: #ebf3ff;
+            border-color: #cfe1ff;
         }
 
         .pedidos-table-card {
