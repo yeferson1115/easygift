@@ -688,10 +688,19 @@ public function updateAjax(Request $request)
 // Agrega este método al final de ProjectsController.php
 public function exportProjects(Request $request)
 {
-    $isEasyGift = $request->get('easygift', 1); // Por defecto 1 para easygift
-    
-    // Obtener los proyectos según el rol del usuario SOLO con easybuy = 1
-    if(auth()->user()->hasrole('Comercio')){
+    $source = $request->get('source');
+
+    if ($source === 'pedidos') {
+        $businessId = optional(auth()->user()->business)->id;
+        $projects = Projects::with(['comercio', 'empresa', 'productos', 'productos.producto'])
+            ->when($businessId, function ($query) use ($businessId) {
+                return $query->where('bussine_id', $businessId);
+            }, function ($query) {
+                return $query->where('bussine_id', auth()->id());
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
+    } elseif(auth()->user()->hasrole('Comercio')){
         $projects = Projects::with(['comercio', 'empresa', 'productos', 'productos.producto'])
             ->where('seller_id', auth()->user()->id)
             ->where('easybuy', 1) // Solo easygift

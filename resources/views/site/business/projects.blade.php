@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <a class="btn pedidos-export-btn" href="{{ route('projects.export') }}">
+            <a class="btn pedidos-export-btn" href="{{ route('projects.export', ['source' => 'pedidos']) }}">
                 <i class="bi bi-download"></i>
                 Descargar CSV
             </a>
@@ -26,7 +26,7 @@
 
         <div class="pedidos-table-card">
             <div class="table-responsive">
-                <table class="table align-middle mb-0 pedidos-table">
+                <table class="table align-middle mb-0 pedidos-table" id="pedidos-datatable">
                     <thead>
                         <tr>
                             <th>Foto</th>
@@ -98,6 +98,8 @@
 @endsection
 
 @push('styles')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
     <style>
         .pedidos-page {
             background: #eff1f5;
@@ -298,5 +300,30 @@
 @endpush
 
 @push('scripts')
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
     <script src="{{ asset('js/app/user/create.js') }}"></script>
+    <script>
+        $(function () {
+            $('#pedidos-datatable').DataTable({
+                pageLength: 10,
+                lengthMenu: [10, 25, 50, 100],
+                order: [[1, 'desc']],
+                responsive: true,
+                language: {
+                    search: 'Buscar:',
+                    lengthMenu: 'Mostrar _MENU_ pedidos',
+                    info: 'Mostrando _START_ a _END_ de _TOTAL_ pedidos',
+                    infoEmpty: 'Mostrando 0 a 0 de 0 pedidos',
+                    zeroRecords: 'No se encontraron pedidos',
+                    paginate: {
+                        first: 'Primero',
+                        last: 'Último',
+                        next: 'Siguiente',
+                        previous: 'Anterior'
+                    }
+                }
+            });
+        });
+    </script>
 @endpush
