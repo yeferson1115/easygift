@@ -1,5 +1,6 @@
-@extends('layouts.appuser')
+@extends('layouts.appheaderlogo')
 @section('title', 'Pedidos')
+@section('content')
 
 <section class="row">
     <div class="col-md-12" style="padding: 0px 30px;">
@@ -55,7 +56,7 @@
                                 </td>
                                 <td>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('M d/y') }}</td>
                                 <td>{{ $item->no_project }}</td>
-                                <td>{{ $firstProduct?->producto ?? 'Pedido personalizado' }}</td>
+                                <td>{{$firstProduct->producto}}</td>
                                 <td>${{ number_format($item->total, 0, 0, '.') }}</td>
                                 <td>{{ $qty }}</td>
                                 <td>
