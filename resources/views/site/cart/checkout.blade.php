@@ -277,8 +277,8 @@
                                     <div id="info-trans" class="row">
 
                                     </div>
-                                    <div class="mt-4">
-                                        <a class="btn waves-effect waves-float waves-light ajax btn-send-order btn-lg"  data-bs-toggle="modal" data-bs-target="#exampleModal">Envíar comporbante de pago</a>
+                                    <div class="mt-4" id="upload-proof-container">
+                                        <a class="btn waves-effect waves-float waves-light ajax btn-send-order btn-lg" id="upload-proof-trigger" data-bs-toggle="modal" data-bs-target="#exampleModal">Enviar comprobante de pago</a>
                                     </div>
 
                                     <!-- Modal -->
@@ -312,7 +312,7 @@
                                 <div class="resume">
                                     @include('site.cart.partials.resumeprice')
                                     <div class="mt-4"> 
-                                        <button class="btn waves-effect waves-float waves-light ajax btn-go-quotation btn-lg comprar" id="comprar">Comprar</button>
+                                        <button class="btn waves-effect waves-float waves-light ajax btn-go-quotation btn-lg comprar checkout-buy-direct" id="comprar">Comprar</button>
                                     </div>
                                     @include('site.cart.partials.resume')
                                 </div>
@@ -320,7 +320,7 @@
                             <div class="col-md-5 resume-mobile mb-5 mt-5" >
                                 @include('site.cart.partials.resumemobile')
                                 <div class="mt-4">
-                                <button class="btn waves-effect waves-float waves-light ajax btn-go-quotation btn-lg comprar" id="comprar">Comprar</button>
+                                <button class="btn waves-effect waves-float waves-light ajax btn-go-quotation btn-lg comprar checkout-buy-direct" id="comprar">Comprar</button>
                                 </div>
                             </div>
                             
@@ -337,6 +337,29 @@
 @endsection
 @push('scripts')
 <script src="{{ asset('js/app/cart/create.js').'?'.rand() }}"></script>
+@php
+    $checkoutTotalExtras = 0;
+    $checkoutTotalShipping = 0;
+    foreach (Cart::session('secondary')->getContent() as $checkoutItem) {
+        if ($checkoutItem->attributes->extra != null && count($checkoutItem->attributes->extra) > 0) {
+            foreach ($checkoutItem->attributes->extra as $checkoutExtra) {
+                $checkoutTotalExtras += ($checkoutExtra['price'] * $checkoutItem->quantity);
+            }
+        }
+
+        $checkoutProduct = \App\Models\Products::where('id', $checkoutItem->id)->first();
+        $packagingUnitQuantity = (float) ($checkoutProduct->packaging_unit_quantity ?? 0);
+        $quantityRequested = (float) ($checkoutItem->quantity ?? 0);
+        $shippingPrice = (float) ($checkoutProduct->shipping_price ?? 0);
+
+        if ($packagingUnitQuantity > 0) {
+            $packages = ceil($quantityRequested / $packagingUnitQuantity);
+            $checkoutTotalShipping += ($shippingPrice * $packages);
+        }
+    }
+
+    $checkoutTotalAmount = Cart::session('secondary')->getTotal() + $checkoutTotalExtras + $checkoutTotalShipping;
+@endphp
 <script>
  const btnMessage = document.getElementById('btn-message');
   const btnUpload = document.getElementById('btn-upload');
@@ -388,7 +411,7 @@ $('.list-group input:radio').click(function() {
     var cotianbak='<div class="col-md-6"><img class="logo logo-bancolombia" src="'+logoscotianbak+'" /><p>A continuación encontrarás los datos de nuestra cuenta para la trasferencia, una vez realizada envíanos una foto del comprobante, dando clic en el botón</p></div><div class="col-md-6"><h4 class="title-info-pago">Cuenta de ahorros Scotiabank Colpatria </h4><hr><div class="row"><div class="col-7"><label class="texto-info-pago">No. de cuenta:</label><label id="cuenta" class="subtext-info-pago">1882017053</label></div><div class="col-5"><a href="#" class="btn-copy" onclick="copiarAlPortapapeles(1)">Copiar</a></div></div><hr><div class="row"><div class="col-7"><label class="texto-info-pago">Nombre del titular:</label><label id="name-cuenta" class="subtext-info-pago">Alma de Colombia S.A.S</label></div><div class="col-5"><a href="#" class="btn-copy" onclick="copiarAlPortapapeles(2)">Copiar</a></div></div><hr><div class="row"><div class="col-7"><label class="texto-info-pago">Documento del titular:</label><label id="nit" class="subtext-info-pago">NIT 901450303-5</label></div><div class="col-5"><a href="#" class="btn-copy" onclick="copiarAlPortapapeles(3)">Copiar</a></div></div></div>';
     
     $('#info-trans div').remove();
-    
+
 
     if(tipo=='Transferencia bancaria Bancolombia'){
         $('#info-trans').append(bancolombia);
@@ -401,6 +424,41 @@ $('.list-group input:radio').click(function() {
     $('.payment-type').removeClass('active_payment');
     $(this).closest('.payment-type').addClass('active_payment');
   });
+
+    function updateFinishStepByPaymentMethod() {
+        const tipo = $('input[name="payment_method"]:checked').val();
+        const requiresVoucherModal = tipo === 'Transferencia bancaria Bancolombia' || tipo === 'PSE, Tarjeta débito o crédito';
+        const isCreditMethod = tipo && tipo.indexOf('Plazo de') === 0;
+
+        if (tipo === 'PSE, Tarjeta débito o crédito') {
+            const pseAlert = `<div class="col-12"><div class="alert alert-info border-0 shadow-sm" role="alert" style="background:#eef6ff;color:#15487a;">
+                <h5 class="mb-2" style="font-weight:700;">Pago en línea con Wompi</h5>
+                <p class="mb-2">Puedes realizar el pago con el valor exacto de tu pedido: <strong>${{ number_format($checkoutTotalAmount, 0, 0, '.') }}</strong>.</p>
+                <p class="mb-2">Haz tu pago en este enlace: <a href="https://checkout.wompi.co/l/VPOS_LIzhDs" target="_blank" rel="noopener" style="font-weight:700;">https://checkout.wompi.co/l/VPOS_LIzhDs</a></p>
+                <p class="mb-0">Una vez pagues, por favor sube el comprobante para validar tu pedido.</p>
+            </div></div>`;
+            $('#info-trans').append(pseAlert);
+        } else if (isCreditMethod) {
+            $('#info-trans').append('<div class="col-12"><div class="alert alert-success border-0 shadow-sm" role="alert"><strong>Pago a crédito aprobado.</strong> Puedes finalizar tu pedido sin adjuntar comprobante.</div></div>');
+        }
+
+        $('#upload-proof-container').toggle(requiresVoucherModal);
+        $('.checkout-buy-direct').toggle(!requiresVoucherModal);
+
+        if (typeof bootstrap !== 'undefined') {
+            const uploadModalElement = document.getElementById('exampleModal');
+            const uploadModal = bootstrap.Modal.getOrCreateInstance(uploadModalElement);
+            if (requiresVoucherModal) {
+                uploadModal.show();
+            } else {
+                uploadModal.hide();
+            }
+        }
+    }
+
+    $('.comfirm').on('click', function () {
+        setTimeout(updateFinishStepByPaymentMethod, 250);
+    });
 
    var input = document.querySelector("#cellphone");
     window.intlTelInput(input, {
