@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+ <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/DataTables/datatables.min.css') }}">
     <!-- Template Main CSS File -->
     <link href="{{ asset('app-assets/css/style.css').'?'.rand() }}" rel="stylesheet">
     @livewireStyles
@@ -73,6 +73,7 @@
     <script src="{{ asset('app-assets/js/main.js') }}"></script>
     <link rel="stylesheet" href="node_modules/@splidejs/splide/dist/css/splide.min.css">
     <!-- or the reference on CDN -->
+     <script src="{{ asset('assets/plugins/DataTables/datatables.min.js') }}"></script>
     
     <script src="{{ asset('app-assets/js/splide.min.js') }}"></script>
     <script src="{{ asset('app-assets/js/swiper-bundle.min.js') }}"></script>    
@@ -102,6 +103,13 @@
             }
         });
     }
+     $('#datatables').DataTable( { 
+        order: [[1, 'desc']]
+       
+     } );
+    $('.datatables').DataTable( {
+       
+      } );
 
     </script>
     @stack('scripts')

@@ -530,7 +530,7 @@ public function envios(Request $request)
                     return $product->price * $product->quantity;
                 });
 
-                $project->total = $total;
+                $project->subtotal = $total;
                 return $project;
             });
 

@@ -6999,7 +6999,7 @@ ul.ul-info li:before {
 			color: black;
 		}
 }
-.next{
+.next-site{
 	color: #999;
 	position: absolute;
 	top: 38%;
@@ -7012,7 +7012,7 @@ ul.ul-info li:before {
 }
 
 @media screen and (max-width: 800px) {
-    .next {
+    .next-site{
         display: none !important;
     }
 }

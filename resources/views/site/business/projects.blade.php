@@ -24,7 +24,7 @@
             </a>
         </div>
 
-        <div class="pedidos-table-card">
+        <div class="pedidos-table-card" style="padding: 50px 20px;">
             <div class="table-responsive">
                 <table class="table align-middle mb-0 pedidos-table" id="pedidos-datatable">
                     <thead>
@@ -39,7 +39,7 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody>                        
                         @forelse ($projects as $item)
                             @php
                                 $firstProduct = $item->productos->first();
@@ -97,9 +97,7 @@
 </section>
 @endsection
 
-@push('styles')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+@push('styles')    
     <style>
         .pedidos-page {
             background: #eff1f5;
@@ -299,16 +297,14 @@
     </style>
 @endpush
 
-@push('scripts')
-    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+@push('scripts')   
     <script src="{{ asset('js/app/user/create.js') }}"></script>
     <script>
         $(function () {
             $('#pedidos-datatable').DataTable({
                 pageLength: 10,
                 lengthMenu: [10, 25, 50, 100],
-                order: [[1, 'desc']],
+                order: [[1, 'asc']],
                 responsive: true,
                 language: {
                     search: 'Buscar:',
