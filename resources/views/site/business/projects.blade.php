@@ -2,8 +2,6 @@
 @section('title', 'Usuarios')
 @section('content')
 
-@section('content')
-
 <section class="row">
     <div class="col-md-12" style="padding: 0px 30px;">
         <a href="javascript:history.back()" class="previos-profile">
