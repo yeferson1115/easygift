@@ -59,6 +59,7 @@ Route::middleware(['auth',])->group(function () {
   Route::get('usuarios-empresa', 'ProfileBusinessController@usuarios')->name('usuarios');
   Route::get('pedidos-empresa', 'ProjectsController@pedidos')->name('pedidos');
   Route::get('pedidos-empresa/{id}', [ProjectsController::class, 'show'])->name('pedidosempresa.show');
+  Route::get('calendario-regalos', [ProjectsController::class, 'calendar'])->name('projects.calendar');
   
   Route::get('usuariosempresa/{id}/edit', [ProfileBusinessController::class, 'edit'])->name('usuariosempresa.edit');
   Route::get('usuariosempresa/create', [ProfileBusinessController::class, 'create'])->name('usuariosempresa.create');
@@ -231,5 +232,4 @@ Route::get('/politica-de-privacidad', function () {
 Route::get('/plantilla', function () {
   return view('admin/business/emailcreateuser');
 });
-
 

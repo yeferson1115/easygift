@@ -107,7 +107,7 @@
         @endforeach
         <li><a href="/mi-perfil"><i class="fa-solid fa-user"></i> Mi cuenta</a></li>
         <li><a href="#"><i class="fa-solid fa-equals"></i> Pedidos</a></li>
-        <li><a href="#"><i class="fa-solid fa-calendar-days"></i> Calendario</a></li>
+        <li><a href="{{ route('projects.calendar') }}"><i class="fa-solid fa-calendar-days"></i> Calendario</a></li>
         <li><a href="#"><i class="fa-solid fa-credit-card"></i> Métodos de pago</a></li>
     </ul>
 </div>

@@ -15,6 +15,7 @@ use App\Models\ProjectsProducts;
 use App\Models\ProjectUpdates;
 use App\Models\Business;
 use App\Models\UpdateRequest;
+use Carbon\Carbon;
 
 use Illuminate\Support\Str;
 
@@ -535,6 +536,39 @@ public function envios(Request $request)
             });
 
         return view('site.business.projects', compact('projects'));
+    }
+
+    public function calendar()
+    {
+        $businessId = optional(auth()->user()->business)->id;
+
+        if (!$businessId) {
+            abort(403);
+        }
+
+        $projects = Projects::with(['productos'])
+            ->where('bussine_id', $businessId)
+            ->whereNotNull('date_shopping')
+            ->orderBy('date_shopping')
+            ->get();
+
+        $projectsByDate = $projects->groupBy(function ($project) {
+            return Carbon::parse($project->date_shopping)->format('Y-m-d');
+        });
+
+        $calendarCounts = $projectsByDate->map(function ($items) {
+            return $items->count();
+        });
+
+        $today = Carbon::now()->format('Y-m-d');
+        $selectedProjects = $projectsByDate->get($today, collect())->values();
+
+        return view('site.business.calendar', [
+            'projects' => $projects,
+            'calendarCounts' => $calendarCounts,
+            'selectedDate' => $today,
+            'selectedProjects' => $selectedProjects,
+        ]);
     }
 
     public function destroy($id)
