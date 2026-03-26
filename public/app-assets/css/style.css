@@ -68,6 +68,9 @@ a {
     font-weight: bold !important;
     margin-bottom: 15px !important;
 }
+.pedidos-page{
+        margin-top: 50px;
+}
 
  .feature-icon {
             font-size: 2.5rem;
@@ -1192,7 +1195,7 @@ a.addcart:hover::after{
     font-size: 13px;
   }
 .btn-products-cart{
-    color: #231B71 !important;
+    color: #4F47E6 !important;
     font-size: 20px;
   }
 
@@ -6394,7 +6397,7 @@ ul.ul-info li:before {
     display: none;
   }
   .detail-mobile{
-    background: #F4F4F4;
+    background: #fff;
     border-radius: 15px;
     border: solid 1px #E1E1E1;
     padding: 20px 15px;
@@ -6868,11 +6871,11 @@ ul.ul-info li:before {
     }
     .title-product-cart{
         font-size: 14px !important; 
-        margin-bottom: 0px !important; 
+        margin-bottom: 7px !important; 
     }
     .info-product-cart, .info-product-cart span{
-        font-size: 14px !important; 
-        margin-bottom: 0px !important; 
+        font-size: 12px !important; 
+        margin-bottom: 7px !important; 
     }
     .resume-mobile{
         background: #fff !important;
@@ -6888,7 +6891,32 @@ ul.ul-info li:before {
         font-size: 18px !important;
         margin-top: 0px !important;
     }
-    
+    .quantity-left-minus, .quantity-right-plus{
+        font-size: 12px !important;
+        height: 25px;
+    }
+    #quantity{
+         height: 25px;
+    }
+    .quantity-group{
+        height: 37px;
+    }
+    .delete-checkout{
+            padding: 5px 12px;
+    }
+    .checkout-steps {
+        display: none;
+    }
+    .mt-0{
+       margin-top: 0px !important; 
+    }
+    .titlecart{
+       font: normal normal bold 20px / 20px Poppins; 
+    }
+    .previus-checkout{
+      padding: 7px 13px;
+      font-size: 14px;  
+    }
     /*yef*/
 
 
@@ -7283,7 +7311,7 @@ ul.ul-info li:before {
 .order-title {
     margin: 0;
     color: #231b72;
-    font-size: 44px;
+    font-size: 25px;
     font-weight: 700;
     line-height: 1.2;
 }
@@ -7298,7 +7326,7 @@ ul.ul-info li:before {
     color: #14a147;
     background: #f2fff6;
     padding: 9px 18px;
-    font-size: 28px;
+    font-size: 14px;
     font-weight: 600;
     line-height: 1;
     display: inline-flex;
@@ -7317,7 +7345,7 @@ ul.ul-info li:before {
 
 .order-block-title {
     color: #3a3a3a;
-    font-size: 42px;
+    font-size: 18px;
     font-weight: 700;
     margin-bottom: 30px;
 }
@@ -7328,7 +7356,7 @@ ul.ul-info li:before {
     align-items: baseline;
     gap: 24px;
     color: #616161;
-    font-size: 37px;
+    font-size: 16px;
     margin-bottom: 12px;
 }
 
@@ -7365,14 +7393,14 @@ ul.ul-info li:before {
 
 .product-name {
     color: #4f4f4f;
-    font-size: 38px;
+    font-size: 16px;
     font-weight: 700;
     margin-bottom: 0;
 }
 
 .product-meta {
     color: #666;
-    font-size: 30px;
+    font-size: 14px;
     margin-bottom: 0;
 }
 
@@ -7403,14 +7431,14 @@ ul.ul-info li:before {
 
 .timeline-card .timeline-event h6 {
     color: #4f4f4f;
-    font-size: 40px;
+    font-size: 16px;
     font-weight: 700;
     margin-bottom: 3px;
 }
 
 .timeline-card .timeline-event p {
     color: #8a8a8a;
-    font-size: 27px;
+    font-size: 12px;
     margin-bottom: 0;
 }
 
@@ -7428,7 +7456,7 @@ ul.ul-info li:before {
 
 .order-shipping-text {
     color: #5d5d5d;
-    font-size: 30px;
+    font-size: 14px;
     line-height: 1.42;
 }
 
@@ -7452,24 +7480,25 @@ ul.ul-info li:before {
     }
 
     .order-block-title {
-        font-size: 26px;
+        font-size: 18px;
         margin-bottom: 18px;
     }
 
     .order-help {
-        font-size: 17px;
+        font-size: 14px;
+        margin-left: 15px;
     }
 
     .detail-row {
-        font-size: 18px;
+        font-size: 14px;
     }
 
     .product-name {
-        font-size: 22px;
+        font-size: 16px;
     }
 
     .product-meta {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .order-shipping-text {
@@ -7477,10 +7506,13 @@ ul.ul-info li:before {
     }
 
     .timeline-card .timeline-event h6 {
-        font-size: 22px;
+        font-size: 16px;
     }
 
     .timeline-card .timeline-event p {
-        font-size: 14px;
+        font-size: 12px;
+    }
+    .order-detail-wrapper{
+        margin-top: 120px !important;
     }
 }

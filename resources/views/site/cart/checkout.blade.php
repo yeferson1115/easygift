@@ -34,8 +34,8 @@
                         $noextras = 0;
                     @endphp
                     <div class="tab-pane fade show active " id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="row mt-5">
-                            <div class="col-md-7">
+                        <div class="row mt-5 mt-0">
+                            <div class="col-md-7 col-12">
                                 <div class="row form-cart">                                    
                                     <h2 class="titlecart mt-3 mb-5 title-checkout"><a href="{{ url()->previous() }}" class="btn-return previus-checkout" ><i class="fa-solid fa-angle-left"></i></a>Completa los datos</h2>
                                     <div class="col-md-12 col-12">
@@ -124,27 +124,17 @@
                                             </p>
 
                                             <div class="gift-options">
-                                            <button type="button" class="gift-option active" id="btn-message">
-                                                <i class="fa-regular fa-message"></i> Escribir mensaje
-                                            </button>
+                                                <button type="button" class="gift-option active" id="btn-message">
+                                                    <i class="fa-regular fa-message"></i> Escribir mensaje
+                                                </button>
 
-                                            <button type="button" class="gift-option" id="btn-upload">
-                                                <i class="fa-solid fa-upload"></i> Cargar diseño
-                                            </button>
+                                                <button type="button" class="gift-option" id="btn-upload">
+                                                    <i class="fa-solid fa-upload"></i> Cargar diseño
+                                                </button>
                                             </div>
 
-                                            <textarea
-                                            class="form-control gift-textarea visible" 
-                                            id="observation" 
-                                            name="observation"
-                                            placeholder="Escribe aquí el mensaje que irá impreso en la postal estándar que acompañará tu regalo..."></textarea>
-
-                                            <input
-                                            type="file"
-                                            id="upload-design"
-                                            name="upload_design"
-                                            accept="image/*"
-                                            class="hidden" />
+                                            <textarea   class="form-control gift-textarea visible" id="observation" name="observation" placeholder="Escribe aquí el mensaje que irá impreso en la postal estándar que acompañará tu regalo..."></textarea>
+                                            <input class="form-control"   type="file"  id="upload-design" name="upload_design"  accept="image/*" class="hidden" />
 
                                         </div>
                                     </div>
@@ -165,7 +155,10 @@
                             </div>
 
                             <div class="col-md-5 resume-mobile mb-5 mt-3" >
-                                @include('site.cart.partials.resumemobile')
+                                <div class="detail-mobile">
+                                    @include('site.cart.partials.resumeprice')
+                                    @include('site.cart.partials.resume')
+                                </div>
                                 <div class="mt-4">
                                     <a class="btn mb-4 addcart btn-lg btn-sale next-d" >Continuar al pago</a>
                                 </div>
@@ -184,60 +177,60 @@
                                         <div class="mb-3 mt-1rem">
                                         <div class="list-group">
                                            <div class="payment-options">
-    <!-- Transferencia bancaria -->
-    <label for="payment_method1" class="payment-option">
-        <div class="payment-option-content">
-            <div class="payment-info">
-                <div class="payment-title">Transferencia bancaria</div>
-                <div class="payment-bank">
-                    <img class="bank-logo" src="{{ asset('images/logo-bancolombia.png').'?'.rand() }}" alt="Bancolombia">
-                </div>
-            </div>
-            <div class="payment-radio">
-                <input type="radio" name="payment_method" id="payment_method1" value="Transferencia bancaria Bancolombia">
-                <span class="radio-custom"></span>
-            </div>
-        </div>
-    </label>
+                                            <!-- Transferencia bancaria -->
+                                            <label for="payment_method1" class="payment-option">
+                                                <div class="payment-option-content">
+                                                    <div class="payment-info">
+                                                        <div class="payment-title">Transferencia bancaria</div>
+                                                        <div class="payment-bank">
+                                                            <img class="bank-logo" src="{{ asset('images/logo-bancolombia.png').'?'.rand() }}" alt="Bancolombia">
+                                                        </div>
+                                                    </div>
+                                                    <div class="payment-radio">
+                                                        <input type="radio" name="payment_method" id="payment_method1" value="Transferencia bancaria Bancolombia">
+                                                        <span class="radio-custom"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
 
-    <!-- Crédito aprobado (solo si aplica) -->
-    @if(Auth::check() && Auth::user()->business && Auth::user()->business->term)
-    <label for="payment_method2" class="payment-option">
-        <div class="payment-option-content">
-            <div class="payment-info">
-                <div class="payment-title">Crédito aprobado</div>
-                <div class="payment-badge">
-                    <i class="fa-regular fa-circle-check"></i>
-                    Plazo de {{Auth::user()->business->term}} días
-                </div>
-            </div>
-            <div class="payment-radio">
-                <input type="radio" name="payment_method" id="payment_method2" value="Plazo de {{Auth::user()->business->term}} días">
-                <span class="radio-custom"></span>
-            </div>
-        </div>
-    </label>
-    @endif
+                                            <!-- Crédito aprobado (solo si aplica) -->
+                                            @if(Auth::check() && Auth::user()->business && Auth::user()->business->term)
+                                            <label for="payment_method2" class="payment-option">
+                                                <div class="payment-option-content">
+                                                    <div class="payment-info">
+                                                        <div class="payment-title">Crédito aprobado</div>
+                                                        <div class="payment-badge">
+                                                            <i class="fa-regular fa-circle-check"></i>
+                                                            Plazo de {{Auth::user()->business->term}} días
+                                                        </div>
+                                                    </div>
+                                                    <div class="payment-radio">
+                                                        <input type="radio" name="payment_method" id="payment_method2" value="Plazo de {{Auth::user()->business->term}} días">
+                                                        <span class="radio-custom"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                            @endif
 
-    <!-- PSE, Tarjeta débito o crédito -->
-    <label for="payment_method3" class="payment-option">
-        <div class="payment-option-content">
-            <div class="payment-info">
-                <div class="payment-title">PSE, Tarjeta débito o crédito</div>
-                <div class="payment-cards">
-                    <span class="card-icon pse">PSE</span>
-                    <span class="card-icon visa">VISA</span>
-                    <span class="card-icon mastercard">MasterCard</span>
-                    <span class="card-icon amex">AMEX</span>
-                </div>
-            </div>
-            <div class="payment-radio">
-                <input type="radio" name="payment_method" id="payment_method3" value="PSE, Tarjeta débito o crédito">
-                <span class="radio-custom"></span>
-            </div>
-        </div>
-    </label>
-</div>
+                                            <!-- PSE, Tarjeta débito o crédito -->
+                                            <label for="payment_method3" class="payment-option">
+                                                <div class="payment-option-content">
+                                                    <div class="payment-info">
+                                                        <div class="payment-title">PSE, Tarjeta débito o crédito</div>
+                                                        <div class="payment-cards">
+                                                            <span class="card-icon pse">PSE</span>
+                                                            <span class="card-icon visa">VISA</span>
+                                                            <span class="card-icon mastercard">MasterCard</span>
+                                                            <span class="card-icon amex">AMEX</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="payment-radio">
+                                                        <input type="radio" name="payment_method" id="payment_method3" value="PSE, Tarjeta débito o crédito">
+                                                        <span class="radio-custom"></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
                                             
                                         </div>
                                         <span class="missing_alert text-danger" id="payment_method_alert"></span>
@@ -261,7 +254,10 @@
                                 </div>
                             </div>
                             <div class="col-md-5 resume-mobile mb-5 mt-5" >
-                                @include('site.cart.partials.resumemobile')
+                                <div class="detail-mobile">
+                                    @include('site.cart.partials.resumeprice')
+                                    @include('site.cart.partials.resume')
+                                </div>
                                 <div class="mt-4">
                                     <a class="btn mb-4 addcart btn-lg btn-sale btn-go-quotation comfirm" id="comfirm">Continuar al pago</a>
                                 </div>
@@ -318,7 +314,10 @@
                                 </div>
                             </div>
                             <div class="col-md-5 resume-mobile mb-5 mt-5" >
-                                @include('site.cart.partials.resumemobile')
+                                <div class="detail-mobile">
+                                    @include('site.cart.partials.resumeprice')
+                                    @include('site.cart.partials.resume')
+                                </div>
                                 <div class="mt-4">
                                 <button class="btn mb-4 addcart btn-lg btn-sale btn-go-quotation comprar checkout-buy-direct" id="comprar">Comprar</button>
                                 </div>
@@ -331,8 +330,6 @@
             </form>
         </div>
     </div>
-    
-
 </section><!-- End product Section -->
 @endsection
 @push('scripts')

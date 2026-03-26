@@ -86,7 +86,7 @@
                     <h4 class="title-my-asesor">Mi asesor/a</h4>
                     
                     <label class="icon-image-user">
-                        @if($busine->asesor->photo!=null)
+                        @if($busine->asesor!=null && $busine->asesor->photo!=null)
                         <img src="{{ asset('images/asesor/'.$busine->asesor->photo.'') }}" class="img-fluid mb-3"  style="width: 130px;
     border-radius: 50%;
     height: 130px;"/>

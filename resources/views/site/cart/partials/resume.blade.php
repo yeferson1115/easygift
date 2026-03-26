@@ -1,8 +1,8 @@
 <div class="accordion accordion-flush mt-3" id="productsdesktap1">
     <div class="accordion-item">
         <h2 class="accordion-header" id="productstap1">
-            <button class="accordion-button btn-products-cart" type="button" data-bs-toggle="collapse" data-bs-target="#product_tap1" aria-expanded="true" aria-controls="product_tap1">
-                Productos carrito
+            <button class="accordion-button btn-products-cart" style="padding: 15px 0px;" type="button" data-bs-toggle="collapse" data-bs-target="#product_tap1" aria-expanded="true" aria-controls="product_tap1">
+                <i class="fa-solid fa-basket-shopping" style="margin-right: 15px;"></i> Productos carrito
             </button>
         </h2>
         <div id="product_tap1" class="accordion-collapse collapse show" aria-labelledby="productstap1" data-bs-parent="#productsdesktap1">

@@ -1,4 +1,4 @@
-@extends('layouts.appheaderlogo')
+@extends('layouts.app')
 @section('title', 'Pedidos')
 @section('content')
 

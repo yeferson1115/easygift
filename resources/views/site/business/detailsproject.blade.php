@@ -1,11 +1,11 @@
-@extends('layouts.appheaderlogo')
+@extends('layouts.app')
 @section('title', 'Detalle del pedido')
 
 @section('content')
 
 
-<section class="row">
-    <div class="col-md-12 order-detail-wrapper">
+<section class="row mt-5">
+    <div class="col-md-12 order-detail-wrapper mt-5">
         <div class="order-header">
             <div class="order-header-left">
                 <a href="javascript:history.back()" class="order-back">
@@ -46,7 +46,7 @@
 
                 <hr class="order-divider">
 
-                <div class="detail-row"><span>Valor pedido:</span><span class="value">$ {{ number_format($total, 0, 0, '.') }}</span></div>
+                <div class="detail-row"><span>Valor pedido:</span><span class="value">$ {{ number_format($project->total, 0, 0, '.') }}</span></div>
 
                 <hr class="order-divider">
 

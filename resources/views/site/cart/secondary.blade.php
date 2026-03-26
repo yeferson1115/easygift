@@ -41,17 +41,17 @@
                                 <input type="hidden" value="{{ $product = App\Models\Products::find($item->id) }}">
                                 <h5 class="title-product-cart">{{ $item->name }}</h5>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-sm-6 col-6">
                                         <p class="info-product-cart">Precio: <span >${{ number_format($item->price, 0, 0, '.') }}</span></p>
                                     </div>
-                                    <div class="col-6">
-                                        <p class="info-product-cart">Cantidad: <span >{{ $item->quantity }} Unidades</span></p>
+                                    <div class="col-sm-6 col-6">
+                                        <p class="info-product-cart">Cantidad: <span >{{ $item->quantity }} unds</span></p>
                                     </div>
                                 </div>
                                 @if (!is_null($product->delivery_time))
                                 <div class="row">
                                     <div class="col-6">
-                                        <p class="info-product-cart"><i class="fa-solid fa-truck-fast"></i> Tiempo de Entrega: <span></p>
+                                        <p class="info-product-cart"><i class="fa-solid fa-truck-fast"></i> Entrega: <span></p>
                                     </div>
                                     <div class="col-6">
                                         <p class="info-product-cart"><span>{{ $product->delivery_time }}</span></p>
@@ -61,7 +61,7 @@
                                 @endif
 
                                 <div class="row">
-                                    <div class="col-6 quantity-group">
+                                    <div class="col-sm-6 col-9 quantity-group">
                                         <div class="input-group" >
                                             
                                             <button type="button" class="quantity-left-minus btn btn-primary btn-number minus" data-type="minus" data-field="" id="{{ $item->id }}">
@@ -76,7 +76,7 @@
                                             
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-sm-6 col-3">
                                         <form method="POST" action="">
                                             <div class="form-group">
                                                 <input type="hidden" name="id" value="{{ $item->id }}">

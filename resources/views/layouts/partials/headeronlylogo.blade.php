@@ -54,7 +54,6 @@
     }
     
     .col-logo .logo {
-        max-width: 100px !important;
         top: 0px !important;
     }
     .account, .navbar-toggler  {
@@ -62,10 +61,8 @@
     }
     .navbar-brand{
        width: 100%; 
-        margin-top: 20px;
     }
-    .navbar-brand img{
-        margin: 0 auto;
-    }
+  
+   
 }
 </style>

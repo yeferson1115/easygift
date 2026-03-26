@@ -27,7 +27,9 @@
     <link href="{{ asset('app-assets/css/simple-lightbox.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+     <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/DataTables/datatables.min.css') }}">
     @livewireStyles
+    @stack('styles')
     
 </head>
 
@@ -187,6 +189,7 @@
     <script src="{{ asset('app-assets/js/sweetalert2@9.js') }}"></script>
     <script src="{{ asset('app-assets/js/intlTelInput.min.js') }}"></script>
     <script src="{{ asset('app-assets/js/simple-lightbox.js') }}"></script>
+    <script src="{{ asset('assets/plugins/DataTables/datatables.min.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @livewireScripts
