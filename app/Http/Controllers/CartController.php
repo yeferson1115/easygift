@@ -334,6 +334,7 @@ class CartController extends Controller
     public function storeeasybuy(Request $request){
         $totalextras=0;
         $totalenvio=0;
+        $commerceOrders = [];
         foreach(Cart::session('secondary')->getContent() as $cart){   
             if($cart->attributes->extra!=null && count($cart->attributes->extra)>0){
                 foreach($cart->attributes->extra as $extra){
@@ -447,18 +448,78 @@ class CartController extends Controller
                         'price'=>$extra['price'],
                         'quantity'=>$cart->quantity,
                     ]);
+
+                    $ownerId = $product->user_id;
+                    if (!isset($commerceOrders[$ownerId])) {
+                        $commerceOrders[$ownerId] = [
+                            'owner' => $product->user,
+                            'products' => [],
+                        ];
+                    }
+
+                    if (!isset($commerceOrders[$ownerId]['products'][$itemproduct->id])) {
+                        $commerceOrders[$ownerId]['products'][$itemproduct->id] = [
+                            'name' => $product->name,
+                            'quantity' => $cart->quantity,
+                            'price' => $cart->price,
+                            'extras' => [],
+                        ];
+                    }
+
+                    $commerceOrders[$ownerId]['products'][$itemproduct->id]['extras'][] = [
+                        'name' => $extra['name'] ?? 'Extra',
+                        'price' => $extra['price'],
+                        'quantity' => $cart->quantity,
+                    ];
                 }
-            } 
+            }
+
+            $ownerId = $product->user_id;
+            if (!isset($commerceOrders[$ownerId])) {
+                $commerceOrders[$ownerId] = [
+                    'owner' => $product->user,
+                    'products' => [],
+                ];
+            }
+
+            if (!isset($commerceOrders[$ownerId]['products'][$itemproduct->id])) {
+                $commerceOrders[$ownerId]['products'][$itemproduct->id] = [
+                    'name' => $product->name,
+                    'quantity' => $cart->quantity,
+                    'price' => $cart->price,
+                    'extras' => [],
+                ];
+            }
             
         }
 
         
 
-        Mail::send('admin.projects.templatenewproject', ['project' => $project], function($message) use ($project){
+       Mail::send('admin.projects.templatenewproject', ['project' => $project], function($message) use ($project){
             $message->to($project->email_customer, $project->customer);
             $message->subject('Solicitud Kanbai No. '.$project->no_project);
             $message->from('ventas@kanbai.co','Kanbai');
        });
+
+       foreach ($commerceOrders as $commerceOrder) {
+            if (empty($commerceOrder['owner']) || empty($commerceOrder['owner']->email)) {
+                continue;
+            }
+
+            $payload = [
+                'project' => $project,
+                'commerceName' => $commerceOrder['owner']->name ?? 'Comercio',
+                'products' => array_values($commerceOrder['products']),
+                'panelUrl' => url('admin/projects/'.$project->id),
+                'destinationAddress' => $project->address,
+            ];
+
+            Mail::send('admin.projects.templatenewprojectcommerce', $payload, function($message) use ($project, $commerceOrder){
+                $message->to($commerceOrder['owner']->email, $commerceOrder['owner']->name ?? 'Comercio');
+                $message->subject('Recibiste un pedido #'.$project->id);
+                $message->from('ventas@kanbai.co','Kanbai');
+            });
+       }
 
        $wompi=0;
        if($request->payment_method=='PSE, Tarjeta débito o crédito' && !$request->file('vaucher')){
