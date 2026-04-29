@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     
 
-    if ($('#main-form #email').val() === '') {
+    /*if ($('#main-form #email').val() === '') {
         $('#main-form #email_alert').text('Ingrese tu correo electrónico').show();
         $('#main-form #email').focus();
         return false;
@@ -28,7 +28,7 @@ $(document).ready(function(){
         $('#main-form #name_business_alert').text('Ingrese nombre de tu empresa').show();
         $('#main-form #name_business').focus();
         return false;
-    }
+    }*/
     if ($('#main-form #name').val() === '') {
         $('#main-form #name_alert').text('Ingrese tu nombre').show();
         $('#main-form #name').focus();

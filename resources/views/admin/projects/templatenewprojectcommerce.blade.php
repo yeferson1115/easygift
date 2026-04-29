@@ -9,7 +9,7 @@
     <table width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;margin:0 auto;background:#fff;border:1px solid #E2E8F0;border-radius:16px;">
         <tr>
             <td style="padding:24px;text-align:center;">
-                <img src="{{ asset('images/logo/logo-kanbai-color.png') }}" alt="Kanbai" width="110">
+                <img src="{{ asset('images/logo/easygift.png') }}" alt="Kanbai" width="110">
             </td>
         </tr>
         <tr>

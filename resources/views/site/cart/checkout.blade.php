@@ -45,7 +45,7 @@
                                             <span class="missing_alert text-danger" id="name_alert"></span>
                                         </div>
                                     </div>                                    
-                                    <div class="col-md-12 col-12">
+                                    <!--<div class="col-md-12 col-12">
                                         <div class="mt-1rem">
                                             <label class="form-label" for="type_document">Tipo de documento <span class="obligatory">*</span></label>
                                             <select class="form-control input-cart" id="type_document" name="type_document">
@@ -57,22 +57,22 @@
                                             </select>
                                             <span class="missing_alert text-danger" id="type_document_alert"></span>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12 col-12">
+                                    </div>-->
+                                    <!--<div class="col-md-12 col-12">
                                         <div class=" mt-1rem">
                                             <label class="form-label " for="document">Número de documento <span class="obligatory">*</span></label>
                                             <input type="text" class="form-control input-cart" id="document" name="document" value="@if(Auth::user()){{Auth::user()->document}}@endif">
                                             <span class="missing_alert text-danger" id="document_alert"></span>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="col-md-12 col-12">
                                         <div class=" mt-1rem">
                                             <label class="form-label " for="cellphone">Número celular</label>
-                                            <input type="text" class="form-control input-cart" id="cellphone" name="cellphone" value="@if(Auth::user()){{Auth::user()->phone}}@endif">
+                                            <input type="text" class="form-control input-cart" id="cellphone" name="cellphone" >
                                             <span class="missing_alert text-danger" id="cellphone_alert"></span>
                                         </div>
                                     </div>
-                                    <div class="col-md-12 col-12">
+                                    <!--<div class="col-md-12 col-12">
                                         <div class=" mt-1rem">
                                             <label class="form-label" for="email">Correo electrónico <span class="obligatory"><span class="obligatory">*</span></span></label>
                                             <input type="email" class="form-control input-cart" id="email" name="email" value="@if(Auth::user()){{Auth::user()->email}}@endif">
@@ -85,7 +85,7 @@
                                             <input type="text" class="form-control input-cart" id="name_business" name="name_business" value="{{ Auth::check() && Auth::user()->business ? Auth::user()->business->company_name : '' }}">
                                             <span class="missing_alert text-danger" id="name_business_alert"></span>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     
                                     
                                     <div class="col-md-12 col-12">

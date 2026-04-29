@@ -21,6 +21,7 @@ use App\Models\ProductQuotationHistory;
 use App\Models\ProductQuotationItems;
 use App\Models\ProductQuotationItemsExtra;
 use App\Models\User;
+use App\Models\Business;
 
 use Illuminate\Support\Str;
 use Cart;
@@ -390,7 +391,7 @@ class CartController extends Controller
         if($request->payment_method=='PSE, Tarjeta débito o crédito'){
 
         }
-
+        $business=Business::find(auth()->user()->business_id);
         $project = Projects::create([
             'no_project'=>$no_project ,
             'customer'=>$request->name,
@@ -399,22 +400,22 @@ class CartController extends Controller
             'email_customer'=>auth()->user()->email,
             'email_customer2'=>$request->email,
             'asesor'=>null,
+            'empresa' => $business ? $business->company_name : null,
             'phone_asesor'=>null,
-            'information_shopping'=>$request->observation,            
+            'information_shopping'=>$request->observation,
             'seller_id'=>$seller_id,
             'state'=>9,
             'easybuy'=>1,
             'vaucher'=>$imageName,
             'total'=>Cart::getTotal()+$totalextras+$totalenvio,
-            'document'=>$request->document,   
-            'cellphone'=>$request->cellphone,   
-            'address'=>$request->address,   
-            'city'=>$request->city,   
-            'payment_method'=>$request->payment_method,  
+            'document'=>$request->document,
+            'cellphone'=>$request->cellphone,
+            'address'=>$request->address,
+            'city'=>$request->city,
+            'payment_method'=>$request->payment_method,
             'status_wompi'=>0,
             'reference'=>'knb_'.$no_project,
-            'user_id'=>auth()->user()->id,
-            'empresa'=>$request->name_business
+            'user_id'=>auth()->user()->id
         ]);
 
         ProjectTimeLine::create([
@@ -495,11 +496,11 @@ class CartController extends Controller
 
         
 
-       Mail::send('admin.projects.templatenewproject', ['project' => $project], function($message) use ($project){
+       /*Mail::send('admin.projects.templatenewproject', ['project' => $project], function($message) use ($project){
             $message->to($project->email_customer, $project->customer);
             $message->subject('Solicitud Kanbai No. '.$project->no_project);
             $message->from('ventas@kanbai.co','Kanbai');
-       });
+       });*/
 
        foreach ($commerceOrders as $commerceOrder) {
             if (empty($commerceOrder['owner']) || empty($commerceOrder['owner']->email)) {
@@ -514,11 +515,11 @@ class CartController extends Controller
                 'destinationAddress' => $project->address,
             ];
 
-            Mail::send('admin.projects.templatenewprojectcommerce', $payload, function($message) use ($project, $commerceOrder){
+            /*Mail::send('admin.projects.templatenewprojectcommerce', $payload, function($message) use ($project, $commerceOrder){
                 $message->to($commerceOrder['owner']->email, $commerceOrder['owner']->name ?? 'Comercio');
                 $message->subject('Recibiste un pedido #'.$project->id);
                 $message->from('ventas@kanbai.co','Kanbai');
-            });
+            });*/
        }
 
        $wompi=0;

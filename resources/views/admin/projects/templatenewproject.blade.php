@@ -83,7 +83,7 @@
                     <!-- Logo Superior -->
                     <tr>
                         <td align="center" style="padding-bottom: 30px;">
-                            <img src="{{ asset('images/logo/logo-kanbai-color.png') }}" alt="Kanbai" width="120">
+                            <img src="{{ asset('images/logo/easygift.png') }}" alt="Kanbai" width="120">
                         </td>
                     </tr>
 
