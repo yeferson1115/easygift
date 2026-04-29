@@ -42,9 +42,9 @@
                                     <tr>
                                         <td style="width: 50%;">
                                             @if($project->easybuy==1)
-                                                <img style="max-width: 150px;; border-radius: 7px;" class="mb-1" src="https://kanbai.co/images/images/products/{{$item->imagen }}"> 
+                                                <img style="max-width: 150px;; border-radius: 7px;" class="mb-1" src="https://kanbai.co/images//products/{{$item->imagen }}"> 
                                             @else
-                                            <img style="max-width: 150px;; border-radius: 7px;" class="mb-1" src="https://kanbai.co/images/images/custom_request/{{$item->imagen }}"> 
+                                            <img style="max-width: 150px;; border-radius: 7px;" class="mb-1" src="https://kanbai.co/images//custom_request/{{$item->imagen }}"> 
                                             @endif
                                             
                                         </td>

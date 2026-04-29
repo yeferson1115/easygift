@@ -15,6 +15,7 @@ use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PaymentMethodController;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Support\Str;
 
@@ -60,6 +61,11 @@ Route::middleware(['auth',])->group(function () {
   Route::get('pedidos-empresa', 'ProjectsController@pedidos')->name('pedidos');
   Route::get('pedidos-empresa/{id}', [ProjectsController::class, 'show'])->name('pedidosempresa.show');
   Route::get('calendario-regalos', [ProjectsController::class, 'calendar'])->name('projects.calendar');
+  Route::get('metodos-de-pago', [PaymentMethodController::class, 'index'])->name('payment-methods.index');
+  Route::get('metodos-de-pago/agregar', [PaymentMethodController::class, 'create'])->name('payment-methods.create');
+  Route::get('metodos-de-pago/{paymentMethod}/editar', [PaymentMethodController::class, 'edit'])->name('payment-methods.edit');
+  Route::post('metodos-de-pago', [PaymentMethodController::class, 'store'])->name('payment-methods.store');
+  Route::put('metodos-de-pago/{paymentMethod}', [PaymentMethodController::class, 'update'])->name('payment-methods.update');
   
   Route::get('usuariosempresa/{id}/edit', [ProfileBusinessController::class, 'edit'])->name('usuariosempresa.edit');
   Route::get('usuariosempresa/create', [ProfileBusinessController::class, 'create'])->name('usuariosempresa.create');

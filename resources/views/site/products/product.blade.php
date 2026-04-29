@@ -142,7 +142,7 @@
                     <div class="carousel-inner small-demo2">
                         @foreach($product->gallery as $key=>$item)
                         <div class="carousel-item @if($key==0) active @endif">
-                            <a href="https://kanbai.co/images/images/products/thumbnail/{{$item->file}}">
+                            <a href="https://kanbai.co/images//products/thumbnail/{{$item->file}}">
                                 <img src="https://kanbai.co/images/products/thumbnail/{{ $item->file }}" alt="{{$item->name}}" class="img-d img-fluid image-list" style="max-height: initial;">
                             </a>
                         </div>

@@ -7,34 +7,25 @@
     <div class="col-md-12" style="padding: 0px 30px;">
     <div class="desk-user" style="margin-top: 10px;">
             <div class="row cont-indicator-user">
-                <div class="col-md-2">
+                <div class="col-md-2" style="font-size: 18px;
+    color: #231B72;
+    font-weight: 600;
+    padding-top: 5px;">
                     Resumen
                </div>
-               <div class="col-md-4">
+               <div class="col-md-10">
                     <div class="row"  onclick="location.href='{{ URL::to('/') }}/pedidos-empresa'">                    
-                        <div class="col-12" style="text-align: center;cursor: pointer;">
+                        <div class="col-12" style="text-align: right;cursor: pointer;">
                             <label class="icon-indicator-user icon-indicator-user-blue" >
-                               <i class="fa-solid fa-list-check"></i> <span style="color: #636363;">{{count($projects)}}</span>
+                               <i class="fa-solid fa-list-check"></i> <span style="color: #636363;"> Total Pedidos: {{count($projects)}}</span>
                             </label>
-                        </div>
-                        <div class="col-12 mt-2">                            
-                            <label class="label-indicator-info">Pedidos</label>
-                        </div>
-                    </div>
-               </div>
-               <div class="col-md-4">
-                <div class="row"  onclick="location.href='{{ URL::to('/') }}/usuarios-empresa'">
-                        <div class="col-12" style="text-align: center;cursor: pointer;">
                             <label class="icon-indicator-user icon-indicator-user-aguamarina">
-                                <i class="fa-solid fa-user"></i> <span>{{count($users)}}</span>
+                                <i class="fa-solid fa-user"></i> <span> Usuarios: {{count($users)}}</span>
                             </label>
-                        </div>
-                        <div class="col-12 mt-2">
-                            <label class="label-indicator"></label>
-                            <label class="label-indicator-info">Usuarios</label>
-                        </div>
+                        </div>                       
                     </div>
                </div>
+               
             </div>
         <div class="row mt-3">
             <div class="col-md-7">

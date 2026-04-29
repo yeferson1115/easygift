@@ -211,7 +211,7 @@
 										@foreach($order->items as $item)
 										<tr>
 											<td width="30%" style="text-align: center; vertical-align: middle;">
-												<img class="imagenpro" src="https://kanbai.co/images/images/products/thumbnai/{{$item->producto->gallery[0]->file}} }}">
+												<img class="imagenpro" src="https://kanbai.co/images//products/thumbnai/{{$item->producto->gallery[0]->file}} }}">
 											</td>
 											<td width="70%" style="vertical-align: top;">
 												<span class="titprod">{{ $item->producto->name }}</span>

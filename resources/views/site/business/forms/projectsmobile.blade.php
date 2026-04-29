@@ -10,11 +10,11 @@
             <div class="col-4">
             @if($item->type==2)
                 <input type="hidden" value="{{$customRequest = App\Models\CustomRequest::where('id',$item->id_type)->first()}}">
-                <img style="max-width: 100%; border-radius: 20px;"     height="100" class="mb-1" src="https://kanbai.co/images/images/custom_request/{{$customRequest->file }}">
+                <img style="max-width: 100%; border-radius: 20px;"     height="100" class="mb-1" src="https://kanbai.co/images//custom_request/{{$customRequest->file }}">
             @endif
             @if($item->type==1)
                 <input type="hidden" value="{{$quotation = App\Models\ProductQuotation::with('producto','producto.gallery')->where('id',$item->id_type)->first()}}">
-                <img style="max-width: 100%; border-radius: 20px;" height="100" class="mb-1" src="https://kanbai.co/images/images/products/thumbnail/list/{{$quotation->producto->gallery[0]->file }}">
+                <img style="max-width: 100%; border-radius: 20px;" height="100" class="mb-1" src="https://kanbai.co/images//products/thumbnail/list/{{$quotation->producto->gallery[0]->file }}">
             @endif
             </div>
             <div class="col-8">

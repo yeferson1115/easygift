@@ -111,7 +111,7 @@
                             <div class="col-md-5 info-desk" style="padding-left: 45px;">
                                 @if (count(Cart::getContent()))
                                     @foreach (Cart::getContent() as $item)
-                                    <img style="max-height: 244px;" class="image-quotation" src="https://kanbai.co/images/images/products/{{$item->attributes->urlfoto}}" />
+                                    <img style="max-height: 244px;" class="image-quotation" src="https://kanbai.co/images//products/{{$item->attributes->urlfoto}}" />
                                     <h2 class="title-product-quotation mb-4 mt-3">{{$item->name}}</h2>
                                     <p class="price-quotation">
                                         <img src="{{ asset('images/Precio_Icono.png') }}" alt="Rango" class="img-d img-fluid">
@@ -178,7 +178,7 @@
                                     @foreach (Cart::getContent() as $item)
                                     <div class="row">
                                         <div class="col-4">
-                                            <img style="max-height: 244px;" class="image-quotation" src="https://kanbai.co/images/images/products/{{$item->attributes->urlfoto }}" />
+                                            <img style="max-height: 244px;" class="image-quotation" src="https://kanbai.co/images//products/{{$item->attributes->urlfoto }}" />
                                         </div>
                                         <div class="col-8">
                                         <h2 class="title-product-quotation mb-3">{{$product->name}}</h2>
@@ -257,7 +257,7 @@
                                     @foreach (Cart::getContent() as $item)
                                     <div class="row">
                                         <div class="col-4">
-                                            <img style="max-height: 244px;" class="image-quotation" src="https://kanbai.co/images/images/products/{{$item->attributes->urlfoto }}" />
+                                            <img style="max-height: 244px;" class="image-quotation" src="https://kanbai.co/images//products/{{$item->attributes->urlfoto }}" />
                                         </div>
                                         <div class="col-8">
                                         <h2 class="title-product-quotation mb-3">{{$product->name}}</h2>

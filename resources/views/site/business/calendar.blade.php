@@ -109,7 +109,7 @@ $projectsByDate = $projects->groupBy(function ($project) {
     .calendar-nav-btn { width: 36px; height: 36px; border-radius: 50%; border: none; background: #f3f4f8; color: #4f5564; }
     .calendar-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; color: #8b8f99; font-weight: 700; margin-bottom: .6rem; }
     .calendar-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .4rem; }
-    .calendar-day { min-height: 67px; border-radius: 60px; border: 1px solid transparent; background: #fff; position: relative; font-weight: 700; color: #4e5462; }
+    .calendar-day { min-height: 67px; border-radius: 60px; border: 1px solid transparent; background: #fff; position: relative; font-weight: 700; color: #4e5462;max-width: 67px; }
     .calendar-day:hover { border-color: #d6daf9; background: #f9faff; }
     .calendar-day-muted { color: #c0c3cc; cursor: default; }
     .calendar-day-selected { background: #2f67d8; color: #fff; }

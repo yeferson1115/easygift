@@ -41,7 +41,7 @@
                         @foreach($order->items as $item)
                         <div class="row">
                             <div class="col-md-4">
-                                <img style="max-width: 100%; border-radius: 30px;" class="mb-1" src="https://kanbai.co/images/images/products/thumbnail/{{$item->producto->gallery[0]->file }}">
+                                <img style="max-width: 100%; border-radius: 30px;" class="mb-1" src="https://kanbai.co/images//products/thumbnail/{{$item->producto->gallery[0]->file }}">
                             </div>
                             <div class="col-md-8">
                                 <h4>{{$item->producto->name}}</h4>

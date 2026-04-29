@@ -25,7 +25,20 @@
                 <h2 class="order-block-title">Información general:</h2>
 
                 <div class="detail-row"><span>Cliente:</span><span class="value">{{ $project->customer }}</span></div>
-                <div class="detail-row"><span>Estado proyecto:</span><span class="value status">En ejecución</span></div>
+                <div class="detail-row">
+                    <span>Estado proyecto:</span>
+                    <span class="value status">
+                        @if ($project->state == 9)
+                            Por Completar
+                        @elseif ($project->state == 0)
+                            En Ejecución
+                        @elseif ($project->state == 2)
+                            Cancelado
+                        @elseif ($project->state == 1)
+                            Finalizado
+                        @endif
+                    </span>
+                </div>
                 <div class="detail-row"><span>Fecha de inicio</span><span class="value">{{ \Carbon\Carbon::parse($project->created_at)->translatedFormat('j M. Y') }}</span></div>
 
                 <hr class="order-divider">
@@ -33,9 +46,9 @@
                 @foreach($project->productos as $product)
                     <div class="product-line mb-3">
                         @if($project->easybuy==1)
-                            <img src="https://kanbai.co/images/images/products/{{ $product->imagen }}" alt="{{ $product->producto }}">
+                            <img src="https://kanbai.co/images//products/{{ $product->imagen }}" alt="{{ $product->producto }}">
                         @else
-                            <img src="https://kanbai.co/images/images/custom_request/{{ $product->imagen }}" alt="{{ $product->producto }}">
+                            <img src="https://kanbai.co/images//custom_request/{{ $product->imagen }}" alt="{{ $product->producto }}">
                         @endif
                         <div>
                             <p class="product-name">{{ $product->producto }}</p>
@@ -53,9 +66,9 @@
                 <h2 class="order-block-title order-shipping-title">Información de envío:</h2>
                 <p class="mb-0 order-shipping-text">
                     {{ $project->delivery_name ?? $project->customer }}<br>
-                    {{ $project->delivery_address ?? 'Dirección no registrada' }}<br>
-                    {{ $project->delivery_city ?? '' }}
-                    @if(!empty($project->delivery_phone))<br>Cel {{ $project->delivery_phone }}@endif
+                    {{ $project->address ?? 'Dirección no registrada' }}<br>
+                    {{ $project->city ?? '' }}
+                    @if(!empty($project->cellphone))<br>Cel {{ $project->cellphone }}@endif
                 </p>
             </div>
 

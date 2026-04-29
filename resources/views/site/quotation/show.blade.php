@@ -44,7 +44,7 @@
                     @foreach($quotation->items as $item)
                     <div class="row information-quotation" style="border-bottom: solid 1px #cfcdcd;">
                         <div class="col-md-3">
-                            <img style="max-width: 100%; border-radius: 15px;" class="mb-1" src="https://kanbai.co/images/images/products/thumbnail/list/{{$item->producto->gallery[0]->file }}">
+                            <img style="max-width: 100%; border-radius: 15px;" class="mb-1" src="https://kanbai.co/images//products/thumbnail/list/{{$item->producto->gallery[0]->file }}">
                         </div>
                         <div class="col-md-4">
                             <p class="name-product-quotation">{{$item->producto->name}}</p>                           

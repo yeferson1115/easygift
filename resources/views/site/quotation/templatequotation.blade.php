@@ -166,7 +166,7 @@
 											@php
 											$imagen = $item['urlfoto'];
 											@endphp
-												<img class="imagenpro" src="https://kanbai.co/images/images/products/{{$imagen }}" /> 
+												<img class="imagenpro" src="https://kanbai.co/images//products/{{$imagen }}" /> 
 											</td>
 											<td width="70%" style="vertical-align: top;">
 												<span class="titprod">{{ $item['name'] }}</span>

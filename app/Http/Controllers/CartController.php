@@ -454,11 +454,11 @@ class CartController extends Controller
 
         
 
-        /*Mail::send('admin.projects.templatenewproject', ['project' => $project], function($message) use ($project){
+        Mail::send('admin.projects.templatenewproject', ['project' => $project], function($message) use ($project){
             $message->to($project->email_customer, $project->customer);
             $message->subject('Solicitud Kanbai No. '.$project->no_project);
             $message->from('ventas@kanbai.co','Kanbai');
-       });*/
+       });
 
        $wompi=0;
        if($request->payment_method=='PSE, Tarjeta débito o crédito' && !$request->file('vaucher')){

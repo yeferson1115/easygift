@@ -44,8 +44,8 @@
                             @php
                                 $firstProduct = $item->productos->first();
                                 $imagePath = $item->easybuy == 1
-                                    ? 'https://kanbai.co/images/images/products/'
-                                    : 'https://kanbai.co/images/images/custom_request/';
+                                    ? 'https://kanbai.co/images/products/'
+                                    : 'https://kanbai.co/images/custom_request/';
                                 $qty = $item->productos->sum('quantity');
                             @endphp
                             <tr>
@@ -66,13 +66,17 @@
                                 <td>${{ number_format($item->total, 0, 0, '.') }}</td>
                                 <td>{{ $qty }}</td>
                                 <td>
-                                    @if ($item->state == 0)
-                                        <span class="estado estado-proceso">En preparación</span>
-                                    @elseif($item->state == 1)
-                                        <span class="estado estado-enviado">Enviado</span>
-                                    @else
-                                        <span class="estado estado-entregado">Entregado</span>
-                                    @endif
+                                    <td>
+                                        @if ($item->state == 9)
+                                            <span class="estado estado-pendiente">Por Completar</span>
+                                        @elseif ($item->state == 0)
+                                            <span class="estado estado-proceso">En Ejecución</span>
+                                        @elseif ($item->state == 2)
+                                            <span class="estado estado-cancelado">Cancelado</span>
+                                        @elseif ($item->state == 1)
+                                            <span class="estado estado-finalizado">Finalizado</span>
+                                        @endif
+                                    </td>
                                 </td>
                                 <td>
                                     <a
