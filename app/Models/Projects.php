@@ -13,7 +13,7 @@ class Projects extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'no_project','customer','date_shopping','bussine_id','email_customer','email_customer2','asesor','phone_asesor','information_shopping','state','imagenes','videos','guia','empresa','seller_id','easybuy','vaucher','total','document','cellphone','address','city','payment_method','date_finish','status_wompi','reference','user_id'
+        'no_project','customer','date_shopping','bussine_id','email_customer','email_customer2','asesor','phone_asesor','information_shopping','state','imagenes','videos','guia','empresa','seller_id','easybuy','vaucher','total','document','cellphone','address','city','payment_method','date_finish','status_wompi','reference','user_id','upload_design'
     ];
 
     protected $casts = [
