@@ -30,6 +30,7 @@ use Mail;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\File;
 
 use Barryvdh\DomPDF\Facade as PDF;
 set_time_limit(300);
@@ -388,6 +389,16 @@ class CartController extends Controller
             $request->vaucher->move(public_path('images/vauchers'), $imageName);
         }
 
+        $uploadDesignName = null;
+        if ($request->file('upload_design')) {
+            $uploadDesignName = time().'_design.'.$request->upload_design->extension();
+            $designPath = public_path('images/design');
+            if (!File::exists($designPath)) {
+                File::makeDirectory($designPath, 0755, true);
+            }
+            $request->upload_design->move($designPath, $uploadDesignName);
+        }
+
         if($request->payment_method=='PSE, Tarjeta débito o crédito'){
 
         }
@@ -415,7 +426,8 @@ class CartController extends Controller
             'payment_method'=>$request->payment_method,
             'status_wompi'=>0,
             'reference'=>'knb_'.$no_project,
-            'user_id'=>auth()->user()->id
+            'user_id'=>auth()->user()->id,
+            'upload_design'=>$uploadDesignName
         ]);
 
         ProjectTimeLine::create([
